@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,17 @@ export class AuthService {
       })
     };
     return this.http.post(environment.apiUrl + '/auth/login', null, httpOptions);
+  }
+
+  logout() {
+    return this.http.post(environment.apiUrl + '/auth/logout', null)
+      .pipe(
+        map(rs => {
+          if (rs) {
+            return rs;
+          }
+          throwError('Error');
+        }
+        ));
   }
 }

@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TaskService } from 'src/app/service/task.service';
 import { Task } from '../../modal/todoModal';
 import { TodoModalComponent } from '../todo-modal/todo-modal.component';
+import { AuthService } from 'src/app/service/auth.service';
+
 
 @Component({
   selector: 'app-detail-task-todo',
@@ -25,6 +27,7 @@ export class DetailTaskTodoComponent implements OnInit {
     private route: Router,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -43,8 +46,8 @@ export class DetailTaskTodoComponent implements OnInit {
     }
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
+  openSnackBar(message: string) {
+    this.snackBar.open(message, null, {
       duration: 2000,
     });
   }
@@ -62,7 +65,7 @@ export class DetailTaskTodoComponent implements OnInit {
         this.countTask(this.listTaskItem);
       }
     }, (err) => {
-      this.openSnackBar('get task data failed', null);
+      this.openSnackBar('get task data failed');
     });
   }
 
@@ -77,9 +80,9 @@ export class DetailTaskTodoComponent implements OnInit {
         this.taskService.createTask(this.idList, result).subscribe(res => {
           this.listTaskItem.push(res);
           this.countTask(this.listTaskItem);
-          this.openSnackBar('create task successfully', null);
+          this.openSnackBar('create task successfully');
         }, (err) => {
-          this.openSnackBar('create task failed', null);
+          this.openSnackBar('create task failed');
         });
       }
     });
@@ -92,9 +95,9 @@ export class DetailTaskTodoComponent implements OnInit {
         this.taskService.modifyTask(this.idList, taskId, item).subscribe(res => {
           this.listTaskItem.splice(index, 1, res);
           this.countTask(this.listTaskItem);
-          this.openSnackBar('Modify task successfully', null);
+          this.openSnackBar('Modify task successfully');
         }, (err) => {
-          this.openSnackBar('Modify task failed', null);
+          this.openSnackBar('Modify task failed');
         });
       }
     });
@@ -106,9 +109,9 @@ export class DetailTaskTodoComponent implements OnInit {
         this.taskService.deleteTask(this.idList, taskId).subscribe(res => {
           this.listTaskItem.splice(index, 1);
           this.countTask(this.listTaskItem);
-          this.openSnackBar('Delete task successfully', null);
+          this.openSnackBar('Delete task successfully');
         }, (err) => {
-          this.openSnackBar('Delete task failed', null);
+          this.openSnackBar('Delete task failed');
         });
       }
     });
@@ -127,9 +130,9 @@ export class DetailTaskTodoComponent implements OnInit {
             item.name = result;
             this.taskService.modifyTask(this.idList, task.id, item).subscribe(res => {
               this.countTask(this.listTaskItem);
-              this.openSnackBar('Modify task successfully', null);
+              this.openSnackBar('Modify task successfully');
             }, (err) => {
-              this.openSnackBar('Modify task failed', null);
+              this.openSnackBar('Modify task failed');
             });
           }
         });
@@ -138,7 +141,9 @@ export class DetailTaskTodoComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.clear();
-    this.route.navigate(['/login']);
+    this.authService.logout().subscribe(rs => {
+      localStorage.clear();
+      this.route.navigate(['/login']);
+    });
   }
 }

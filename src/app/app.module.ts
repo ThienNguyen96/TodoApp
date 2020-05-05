@@ -20,7 +20,6 @@ import { LoginComponent } from './components/login/login.component';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { TodoModalComponent } from './components/todo-modal/todo-modal.component';
-import { DetailListTodoComponent } from './components/detail-list-todo/detail-list-todo.component';
 import { DetailTaskTodoComponent } from './components/detail-task-todo/detail-task-todo.component';
 
 @NgModule({
@@ -29,7 +28,6 @@ import { DetailTaskTodoComponent } from './components/detail-task-todo/detail-ta
     LoginComponent,
     MainPageComponent,
     TodoModalComponent,
-    DetailListTodoComponent,
     DetailTaskTodoComponent
   ],
   imports: [

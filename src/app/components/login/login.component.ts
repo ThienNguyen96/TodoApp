@@ -17,7 +17,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router
-  ) { }
+  ) {
+    if (localStorage.getItem('API_KEY')) {
+      this.router.navigate(['/main-page']);
+    }
+  }
 
   ngOnInit() {
     this.initForm();

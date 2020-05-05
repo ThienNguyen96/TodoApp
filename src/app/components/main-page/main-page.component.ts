@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ListService } from 'src/app/service/list.service';
 import { TodoModalComponent } from '../todo-modal/todo-modal.component';
 import { List } from '../../modal/todoModal';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-main-page',
@@ -23,7 +24,8 @@ export class MainPageComponent implements OnInit {
     private listService: ListService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -31,8 +33,8 @@ export class MainPageComponent implements OnInit {
     this.innerWidth = window.innerWidth;
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
+  openSnackBar(message: string) {
+    this.snackBar.open(message, null, {
       duration: 2000,
     });
   }
@@ -46,9 +48,9 @@ export class MainPageComponent implements OnInit {
   addNewTodo(name: string) {
     this.listService.addNewList(name).subscribe(res => {
       this.listTodoItem.push(res);
-      this.openSnackBar('Add new list succesfully', null);
+      this.openSnackBar('Add new list succesfully');
     }, (err) => {
-      this.openSnackBar('Add new list failed', null);
+      this.openSnackBar('Add new list failed');
     });
   }
 
@@ -68,9 +70,9 @@ export class MainPageComponent implements OnInit {
     this.listService.removeList(id).subscribe(res => {
       const listItem = this.listTodoItem.filter(item => item.id !== id);
       this.listTodoItem = listItem;
-      this.openSnackBar('Delete list succesfully', null);
+      this.openSnackBar('Delete list succesfully');
     }, (err) => {
-      this.openSnackBar('Delete list Failed', null);
+      this.openSnackBar('Delete list Failed');
     });
   }
 
@@ -83,21 +85,23 @@ export class MainPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.listService.modifyList(itemModify.id, result).subscribe(res => {
-          this.openSnackBar('Modify list succesfully', null);
+          this.openSnackBar('Modify list succesfully');
           this.listTodoItem.map(item => {
             if (item.id === itemModify.id) {
               item.name = result;
             }
           });
         }, (err) => {
-          this.openSnackBar('Modify list Failed', null);
+          this.openSnackBar('Modify list Failed');
         });
       }
     });
   }
 
   logOut() {
-    localStorage.clear();
-    this.router.navigate(['/login']);
+    this.authService.logout().subscribe(rs => {
+      localStorage.clear();
+      this.router.navigate(['/login']);
+    });
   }
 }
