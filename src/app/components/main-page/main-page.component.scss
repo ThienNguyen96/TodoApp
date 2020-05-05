@@ -9,17 +9,25 @@
   .wrap-item {
     margin: 40px;
 
-    mat-card.mat-card {
-      width: calc(100vw - 77vw);
-      text-align: left;
+    .d-flex {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
 
-      mat-icon.mat-icon {
-        cursor: pointer;
-        color: gray;
-      }
+    .list {
+      width: 280px;
+      min-height: 240px;
+      border: 2px solid #e0e0e096;
+      margin: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
+      position: relative;
 
       .btn {
-        text-align: right;
+        position: absolute;
+        bottom: 6px;
+        right: 6px;
       }
     }
   }
