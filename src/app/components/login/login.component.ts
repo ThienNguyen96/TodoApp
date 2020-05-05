@@ -13,11 +13,9 @@ export class LoginComponent implements OnInit {
   @Input() error: string | null;
   @Output() submitEM = new EventEmitter();
   frm: FormGroup;
-  isLogined = false;
 
   constructor(
     private auth: AuthService,
-    // private localStorage: LocalStorageService,
     private router: Router
   ) { }
 
@@ -41,10 +39,8 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.frm.valid) {
       this.auth.login(this.frm.value).subscribe(res => {
-        // this.localStorage. saveLocalStorage(res.apiKey);
         localStorage.setItem('API_KEY', res.apiKey);
         this.router.navigate(['/main-page']);
-        this.isLogined = true;
       }, (err) => {
         this.error = 'The username or password is incorrect';
       });

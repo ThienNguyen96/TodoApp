@@ -1,4 +1,9 @@
 <div class="wrapper">
+  <mat-card class="log-out">
+    <mat-icon (click)="logOut()" aria-hidden=" false" aria-label="Example home icon" mat-raised-button
+      matTooltip="log out">logout
+    </mat-icon>
+  </mat-card>
   <mat-card class="header">
     <h1>{{ taskTitle }}</h1>
     <p>{{ completedTask }} of {{ remainingTask }} tasks</p>

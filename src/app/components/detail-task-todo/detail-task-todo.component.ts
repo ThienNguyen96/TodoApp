@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -22,6 +22,7 @@ export class DetailTaskTodoComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private router: ActivatedRoute,
+    private route: Router,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
   ) { }
@@ -134,5 +135,10 @@ export class DetailTaskTodoComponent implements OnInit {
         });
       }
     });
+  }
+
+  logOut() {
+    localStorage.clear();
+    this.route.navigate(['/login']);
   }
 }

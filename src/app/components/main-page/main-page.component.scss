@@ -2,8 +2,9 @@
   text-align: center;
 
   mat-card.log-out.mat-card {
-    float: right;
     cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .wrap-item {

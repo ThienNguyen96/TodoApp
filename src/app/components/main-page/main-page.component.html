@@ -1,6 +1,7 @@
 <div class="wrapper">
-  <mat-card class="log-out" (click)="logOut()">
-    <mat-icon aria-hidden=" false" aria-label="Example home icon" mat-raised-button matTooltip="log out">logout
+  <mat-card class="log-out">
+    <mat-icon (click)="logOut()" aria-hidden=" false" aria-label="Example home icon" mat-raised-button
+      matTooltip="log out">logout
     </mat-icon>
   </mat-card>
   <h4>Add new todo list</h4>
@@ -10,7 +11,7 @@
 
   <section class="wrap-item">
     <div class="d-flex">
-      <div class="list" *ngFor="let item of listTodoItem, let i = index">
+      <div class="list" *ngFor="let item of listTodoItem">
         <p>
           Title: {{ item.name}}
           <span class="edit" (click)="onEditList(item)">

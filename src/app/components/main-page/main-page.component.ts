@@ -1,11 +1,10 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { ListService } from 'src/app/service/list.service';
 import { TodoModalComponent } from '../todo-modal/todo-modal.component';
-
 import { List } from '../../modal/todoModal';
 
 @Component({
@@ -30,24 +29,6 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
     this.getTodoLists();
     this.innerWidth = window.innerWidth;
-    this.onResize();
-  }
-
-  @HostListener('window:resize', ['$event']) onResize(event?) {
-    this.detectScreenSize();
-
-  }
-
-  private detectScreenSize() {
-    const height = window.innerHeight;
-    const width = window.innerWidth;
-    if (width <= 1200) {
-      this.col = 2;
-    }
-    if (width <= 800) {
-      this.col = 1;
-    }
-    console.log('â', width);
   }
 
   openSnackBar(message: string, action: string) {

@@ -1,4 +1,10 @@
 .wrapper {
+  mat-card.log-out.mat-card {
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+  }
+
   mat-card.header.mat-card {
     background: linear-gradient(45deg, #7777c1, #79e2f9);
     text-align: left;
