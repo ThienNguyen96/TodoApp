@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label *ngIf="data?.name || !data">{{ data && data.name ? 'Edit List' : 'Add new todo'}}</mat-label>
+    <mat-label *ngIf="data && data?.newTask">add new task</mat-label>
+    <mat-label *ngIf="data && data?.editTask">edit task</mat-label>
+    <input matInput [(ngModel)]="listName">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="listName" [disabled]="!listName">Ok</button>
+</div>

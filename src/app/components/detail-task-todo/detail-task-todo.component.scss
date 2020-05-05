@@ -1,0 +1,50 @@
+.wrapper {
+  mat-card.header.mat-card {
+    background: linear-gradient(45deg, #7777c1, #79e2f9);
+    text-align: left;
+    padding-left: 50px;
+    border-radius: 20px;
+  }
+
+  section.content {
+    max-height: 600px;
+    overflow-y: scroll;
+
+    mat-card.task-item.mat-card {
+      margin: 15px;
+      padding-left: 33px;
+      display: flex;
+
+      span.complete {
+        text-decoration: line-through;
+      }
+
+      mat-checkbox {
+        margin-right: 10px;
+      }
+    }
+
+    .task-item {
+      .options {
+        width: calc(100vw - 80vw);
+        text-align: center;
+      }
+
+      span.task-title {
+        width: calc(100vw - 77vw);
+        display: inline-block;
+      }
+    }
+  }
+
+  .add-new {
+    cursor: pointer;
+    color: #0014ff;
+
+    mat-icon.icon {
+      position: relative;
+      top: 6px;
+    }
+  }
+
+}

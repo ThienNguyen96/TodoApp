@@ -1,0 +1,40 @@
+<div class="wrapper">
+  <mat-card class="log-out" (click)="logOut()">
+    <mat-icon aria-hidden=" false" aria-label="Example home icon" mat-raised-button matTooltip="log out">logout
+    </mat-icon>
+  </mat-card>
+  <h4>Add new todo list</h4>
+  <section>
+    <button mat-raised-button matTooltip="Add new todo" mat-raised-button color="accent" (click)="onAddNew()">+</button>
+  </section>
+
+  <section class="wrap-item">
+    <mat-grid-list cols="{{ col}}" rowHeight="2:1">
+      <mat-grid-tile *ngFor="let item of listTodoItem, let i = index">
+        <mat-card>
+          <p>
+            Title: {{ item.name}}
+            <span class="edit" (click)="onEditList(item)">
+              <mat-icon mat-raised-button matTooltip="Edit list" aria-hidden="false" aria-label="Example home icon">edit
+              </mat-icon>
+            </span>
+          </p>
+          <p>Numbers of task: {{item.tasks}}</p>
+          <div class="btn">
+
+            <a [routerLink]="['/task-detail', item.id]" [queryParams]="{ name: item.name}">
+              <button mat-stroked-button color="primary">
+                <mat-icon mat-raised-button matTooltip="Details list" aria-hidden=" false"
+                  aria-label="Example home icon">info</mat-icon>
+              </button>
+            </a>
+            <button mat-stroked-button color="accent" (click)="onDeleteList(item.id)">
+              <mat-icon mat-raised-button matTooltip="Delete list" aria-hidden="false" aria-label="Example home icon">
+                delete</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </section>
+</div>

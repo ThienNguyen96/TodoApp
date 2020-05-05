@@ -1,0 +1,26 @@
+.wrapper {
+  text-align: center;
+
+  mat-card.log-out.mat-card {
+    float: right;
+    cursor: pointer;
+  }
+
+  .wrap-item {
+    margin: 40px;
+
+    mat-card.mat-card {
+      width: calc(100vw - 77vw);
+      text-align: left;
+
+      mat-icon.mat-icon {
+        cursor: pointer;
+        color: gray;
+      }
+
+      .btn {
+        text-align: right;
+      }
+    }
+  }
+}

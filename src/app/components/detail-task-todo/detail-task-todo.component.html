@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <mat-card class="header">
+    <h1>{{ taskTitle }}</h1>
+    <p>{{ completedTask }} of {{ remainingTask }} tasks</p>
+  </mat-card>
+  <section class="content">
+    <mat-card *ngFor="let task of listTaskItem" class="task-item">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-checkbox [checked]="task.completed" (change)="onCheck(task.id)"></mat-checkbox>
+            <span class="{{ task.completed ? 'task-title complete' : 'task-title'}}">{{ task.name }}</span>
+            <div class="options">
+              <mat-icon mat-raised-button matTooltip="Delete task" aria-hidden="false" aria-label="Example home icon"
+                (click)="deleteTask(task.id)">delete</mat-icon>
+              <mat-icon mat-raised-button matTooltip="Edit task" aria-hidden="false" aria-label="Example home icon"
+                (click)="onEdit(task)">edit</mat-icon>
+            </div>
+          </mat-expansion-panel-header>
+
+          <p>Task title: {{task.name}}</p>
+          <p>Created at: {{task.createdAt | date:'short':'UTC'}}</p>
+          <p>Completed: {{task.completed ? 'completed' : 'not yet'}}</p>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card>
+  </section>
+  <section>
+    <mat-card class="task-item">
+      <div class="add-new" (click)="addNewTask()">
+        <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+        add new task
+      </div>
+    </mat-card>
+  </section>
+</div>
