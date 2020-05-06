@@ -16,13 +16,24 @@ mat-card-content {
 }
 
 .error {
-  padding: 16px;
+  padding: 0px 0px 12px 0px;
   width: 300px;
-  color: white;
-  background-color: red;
+  color: red;
+  margin: 0px;
+  text-align: center;
+  font-size: 11px;
 }
 
 .button {
   display: flex;
   justify-content: flex-end;
+}
+
+button.btn-block {
+  width: 100%;
+
+  &:hover {
+    background: #ff4081;
+    color: #fff;
+  }
 }
